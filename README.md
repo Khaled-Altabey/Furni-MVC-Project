@@ -1,4 +1,5 @@
-
+## 🪑Furni 
+Furni is an E-commerce project that sells modern furniture 
 ---
 
 ## 🧱 Architecture Overview
