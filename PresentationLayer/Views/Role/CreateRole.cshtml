@@ -1,0 +1,44 @@
+﻿@using PresentationLayer.ActionRequests
+@model CreateRoleActionRequest
+@{
+	Layout = "_Layout2";
+}
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h2 style="color:#fff;">Adding Roles</h2>
+                </div>
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+    </div>
+</div>
+<h1>
+	Create Role
+</h1>
+
+<div class="row">
+
+	<div class="col-md-4" style="margin:0 auto;" >
+		<form asp-action="CreateRole">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="form-group " style="margin-bottom:15px;">
+				<label asp-for="RoleName" class="control-label"></label>
+				<input asp-for="RoleName" class="form-control"/>
+				<span asp-validation-for="RoleName" class="text-danger"></span>
+			</div>
+			<div style="display:flex; gap:70px;">
+				<input type="submit"value="create" class="btn btn-success"/>
+			<div class="btn btn-success">
+				<a asp-action="index" style="color:#fff; text-decoration:none;">Back to List</a>
+			</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
+				

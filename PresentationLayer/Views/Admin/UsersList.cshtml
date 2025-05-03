@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<IdentityUser>
+@{
+	Layout = "_Layout2";
+}
+<div class="hero">
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-lg-5">
+				<div class="intro-excerpt">
+					<h1 style="color:#fff;"> Users List</h1>
+				</div>
+			</div>
+			<div class="col-lg-7"></div>
+		</div>
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+	<tr>
+		<th>
+			UserName
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+		@foreach (var User in Model)
+		{
+			<tr>
+				<td>
+					@User.UserName
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

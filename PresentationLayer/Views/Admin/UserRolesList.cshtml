@@ -1,0 +1,52 @@
+﻿@using PresentationLayer.ViewModels
+@model List<UserRolesVm>
+@{
+	Layout = "_Layout2";
+}
+<table class="table" style="margin-bottom:50px;">
+	<thead>
+	<tr>
+			<th>
+				UserName
+			</th>
+			<th>
+				Roles
+			</th>
+			<th>
+				Actions
+			</th>
+	</tr>
+	</thead>
+	<tbody>
+		@foreach (var User in Model)
+		{
+			<tr>
+				<td>
+					@User.UserName
+				</td>
+				<td>
+					@string.Join(", ",User.Roles)
+				</td>
+				<td>
+					<form asp-action="EditUserRoles" method="Post">
+						<input type="hidden" name="UserId" value="@User.UserId"/>
+						<select name="roles" multiple class="form-control">
+							@foreach(var role in (List<string>) ViewBag.AllRoles)
+							{
+								@if(User.Roles.Contains(role))
+								{
+									<option value ="@role" selected>@role</option>
+								}
+								else
+								{
+									<option value ="@role">@role</option>
+								}
+							}
+						</select>
+						<button type="submit" class="btn - btn-success" mt-2>Update Role</button>
+					</form>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

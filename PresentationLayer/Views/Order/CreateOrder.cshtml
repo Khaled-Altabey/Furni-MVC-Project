@@ -1,0 +1,117 @@
+﻿@using BussinessLayer.DTOs
+@using DataAccessLayer.Entities
+@using PresentationLayer.ActionRequests
+
+@model List<GetProductByIdDto>
+@{
+    Layout = "_Layout2";
+}
+
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Confirm Your Order</h1>
+                </div>
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+    </div>
+</div>     
+@if (Model == null || !Model.Any())
+{
+    <h2>Your cart is empty, Take a Look at our products from <a asp-action="Shop" asp-controller="Product" class="btn btn-secondary me-2">Shop here</a></h2>
+}
+else
+{
+    
+<div class="untree_co-section before-footer-section">
+      <div class="container">
+        <div class="row mb-5">
+          <form class="col-md-12" method="post">
+            <div class="site-blocks-table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Image</th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-remove">Amount</th>
+                    <th class="product-total">Total</th>
+                    <th class="product-remove">Remove</th>
+
+                  </tr>
+                </thead>
+                        <tbody>
+
+                                @{
+                                    decimal total = 0;
+                                    decimal TotalPrice = 0;
+                                }
+                @foreach(var item in Model)
+                        {
+                                <tr>
+                                <td class="product-thumbnail">
+                                    <img src="/images/@item.Image"
+                                         alt="Image"
+                                         class="img-fluid" />
+                                </td>
+                                <td class="product-name">
+                                    <h2 class="h5 text-black"> @item.Name</h2>
+                                </td>
+                                <td>@item.Price</td>
+                                 <td>@item.Amount</td>
+                                        @{
+                                            total = item.Price * item.Amount;
+                                        }
+                                <td>@total</td>
+                               <td><a asp-action="ConfirmRemoveFromList" asp-controller="Order" asp-route-id="@item.Id" class="btn btn-secondary" >Remove</a></td>
+                            </tr>
+                                    
+
+                                 TotalPrice += total;
+                              
+                                    
+                        }
+                        </tbody>
+                  </table>
+
+                  </div>
+                  <div>
+                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <span class="text-black">Total</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <strong class="text-black">@TotalPrice</strong>
+                    </div>
+                </div>
+                  </div>
+            <div>
+                  </div>
+                  </form>
+                  <div>
+
+            <a class="btn btn-black btn-lg py-3 btn-block" asp-action="PayOrder" asp-controller="Order"
+                    onclick="window.location='checkout.html'">
+                Create Order
+            </a>
+            <a class="btn btn-black btn-lg py-3 btn-block" asp-action="Shop" asp-controller="Product"
+                    onclick="window.location='checkout.html'">
+                Continue Shopping
+            </a>
+                  </div>
+</div>
+</div>
+</div>
+
+
+}
+
+
+
+
+
+

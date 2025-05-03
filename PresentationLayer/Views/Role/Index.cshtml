@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<IdentityRole>
+@{
+	Layout = "_Layout2";
+}
+<div class="hero">
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-lg-5">
+				<div class="intro-excerpt">
+					<h1 style="color:#fff;"> Roles List</h1>
+				</div>
+			</div>
+			<div class="col-lg-7"></div>
+		</div>
+	</div>
+</div>
+	<h2>
+		table of roles
+	</h2>
+	<table class="table">
+		<tr>
+			<th>
+				Role Name
+			</th>
+		</tr>
+	<tbody>
+		@foreach(var role in Model)
+	{
+		<tr>
+			<td>
+				@role.Name
+			</td>
+		</tr>
+	}
+</tbody>
+	</table>

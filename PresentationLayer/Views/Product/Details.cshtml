@@ -1,0 +1,47 @@
+﻿@using PresentationLayer.ViewModels
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@{
+    Layout = "_Layout2";
+}
+@model GetProductByIdVm
+
+
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Product Details</h1>
+                </div>
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+    </div>
+</div>
+<div class="card" style="width: 25rem; margin:0 auto;">
+    <img class="card-img-top" src="~/images/@Model.Image" alt="Chair">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <p class="card-text" style="font-weight:600;">@Model.Price</p>
+        <div style="display:flex; gap:4px;">
+
+        @if(User.Identity.IsAuthenticated)
+            {
+               
+            @if(User.IsInRole("Customer"))
+                {
+
+             <a asp-controller="Order" asp-action="AddToCart" asp-route-id="@Model.Id" class ="btn btn-warning">Add To Cart</a>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+            <a asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@Model.Id" class="btn btn-warning">Update Product</a>
+            <a asp-controller="Product" asp-action="ConfirmDelete" asp-route-id="@Model.Id" class=" btn btn-warning">Delete Product</a>
+                }
+            }    
+        </div>
+
+    </div>
+</div>

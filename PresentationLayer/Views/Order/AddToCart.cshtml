@@ -1,0 +1,54 @@
+﻿@using BussinessLayer.DTOs
+@using DataAccessLayer.Entities
+@using PresentationLayer.ActionRequests
+
+@model AddToCartActionRequest
+@{
+    Layout = "_Layout2";
+}
+
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Are you sure you want to add to cart</h1>
+                </div>
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+    </div>
+</div>     
+<div style="margin:0 auto; width:600px;">
+
+    <form  asp-controller="Order" asp-action="AddToCart" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+    <input type="hidden" name="Name" value="@Model.Name" />
+    <input type="hidden" name="Price" value="@Model.Price" />
+     <input type="hidden" name="Image" value="@Model.Image" />
+        <input type="hidden" name="Description" value="@Model.Description" />
+
+     
+        <tr>
+            <td class="product-thumbnail">
+                <img src="/images/@Model.Image" alt="Image" class="img-fluid" />
+            </td>
+            <td class="product-name">
+                <h2 class="h5 text-black">@Model.Name</h2>
+            </td>
+            <td class="product-description">
+                <h2 class="h5 text-black">@Model.Description</h2>
+            </td>
+            <p style="font-weight:700; font-size:20px;">$ @Model.Price</p>
+            <br />
+            <td>
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </td>
+        </tr>
+    </form>
+</div>
+        
+
+ 
+
+
